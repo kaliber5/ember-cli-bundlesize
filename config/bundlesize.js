@@ -1,10 +1,12 @@
 module.exports = {
   javascript: {
     pattern: 'assets/*.js',
-    limit: '1KB'
+    limit: '150KB',
+    compression: 'brotli'
   },
   css: {
     pattern: 'assets/*.css',
-    limit: '1MB'
+    limit: '1MB',
+    compression: 'gzip'
   }
 };

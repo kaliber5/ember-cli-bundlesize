@@ -21,11 +21,13 @@
     "test:all": "ember try:each"
   },
   "dependencies": {
+    "brotli-size": "^0.0.3",
     "bytes": "^3.0.0",
     "chalk": "^2.4.1",
     "ember-cli-babel": "^6.6.0",
     "execa": "^1.0.0",
     "fast-glob": "^2.2.2",
+    "gzip-size": "^5.0.0",
     "rsvp": "^4.8.3",
     "silent-error": "^1.1.0",
     "zlib": "^1.0.5"
