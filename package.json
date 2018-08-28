@@ -21,7 +21,14 @@
     "test:all": "ember try:each"
   },
   "dependencies": {
-    "ember-cli-babel": "^6.6.0"
+    "bytes": "^3.0.0",
+    "chalk": "^2.4.1",
+    "ember-cli-babel": "^6.6.0",
+    "execa": "^1.0.0",
+    "fast-glob": "^2.2.2",
+    "rsvp": "^4.8.3",
+    "silent-error": "^1.1.0",
+    "zlib": "^1.0.5"
   },
   "devDependencies": {
     "@ember/optional-features": "^0.6.1",
