@@ -1,6 +1,8 @@
 ember-cli-bundlesize
 ==============================================================================
 [![Build Status](https://travis-ci.com/kaliber5/ember-cli-bundlesize.svg?branch=master)](https://travis-ci.com/kaliber5/ember-cli-bundlesize)
+[![Ember Observer Score](https://emberobserver.com/badges/ember-cli-bundlesize.svg)](https://emberobserver.com/addons/ember-cli-bundlesize)
+[![npm version](https://badge.fury.io/js/ember-cli-bundlesize.svg)](https://badge.fury.io/js/ember-cli-bundlesize)
 
 Make sure your Ember app stays small by testing its bundle size against a given size budget.
 
