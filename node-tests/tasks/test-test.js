@@ -45,7 +45,8 @@ describe('bundlesize:test', function() {
       ui,
       rootDir,
       buildDir,
-      skipBuildIfAvailable: true
+      buildApp: false,
+      configPath: 'config/bundlesize.js'
     });
   });
 
