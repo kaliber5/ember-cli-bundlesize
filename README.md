@@ -24,16 +24,17 @@ bucket that all files belonging to that bucket must not exceed, e.g "max. 400KB 
 
 ### Running bundle size tests
 
-Run this command to assert that your app does not exceed the defined limits:
+Run this command to build and assert that your app does not exceed the defined limits:
 
 ```
-ember bundlesize:test 
+ember bundlesize:test
 ```
-
 This will create a production build of your app (so that may take a bit), and assert that all the files defined for 
 each bucket don't exceed its limits, after compression. In case of a failure the command will exit with a non-zero exit
 code. So you can integrate this command into your CI workflow, and make your builds fail when the bundle size test
 does not pass.
+
+If you do not want to build the app before running the tests you can disable the build by passing `--build-app=false`
 
 ### Configuration
 
@@ -63,3 +64,5 @@ the following configuration properties:
   * `gzip` (default)
   * `brotli`: compress files using Brotli
   * `none`: do not compress files at all
+
+To override the location of the config path you can pass: `config-path="<PATH TO CONFIG>"`
