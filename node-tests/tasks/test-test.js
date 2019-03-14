@@ -14,23 +14,24 @@ function createConfig(dir, config) {
   fs.outputFileSync(path.join(dir, 'config/bundlesize.js'), contents);
 }
 
-function assertOutput(line, pass, config, key) {
-  let { limit, compression } = config[key];
+function assertOutput(line, pass, config, app, key) {
+  let { limit, compression } = config[app][key];
   let pattern = pass ?
-    /ok \d+ - (\w+): (.+) <= (.+) \((\w+)\)/
+    /ok \d+ - (\w+):(\w+): (.+) <= (.+) \((\w+)\)/
     :
-    /not ok \d+ - (\w+): (.+) > (.+) \((\w+)\)/;
+    /not ok \d+ - (\w+):(\w+): (.+) > (.+) \((\w+)\)/;
 
   expect(line).to.match(pattern);
   let matches = pattern.exec(line);
-  expect(matches[1]).to.equal(key);
+  expect(matches[1]).to.equal(app);
+  expect(matches[2]).to.equal(key);
   if (pass) {
-    expect(bytes.parse(matches[2])).to.be.below(bytes.parse(limit));
+    expect(bytes.parse(matches[3])).to.be.below(bytes.parse(limit));
   } else {
-    expect(bytes.parse(matches[2])).to.be.above(bytes.parse(limit));
+    expect(bytes.parse(matches[3])).to.be.above(bytes.parse(limit));
   }
-  expect(matches[3]).to.equal(limit);
-  expect(matches[4]).to.equal(compression === 'none' ? 'uncompressed' : compression);
+  expect(matches[4]).to.equal(limit);
+  expect(matches[5]).to.equal(compression === 'none' ? 'uncompressed' : compression);
 }
 
 describe('bundlesize:test', function() {
@@ -57,15 +58,17 @@ describe('bundlesize:test', function() {
   ].forEach(compression => {
     it(`it passes bundlesize test (${compression})`, function() {
       let config = {
-        javascript: {
-          pattern: '*.js',
-          limit: '6KB',
-          compression
-        },
-        css: {
-          pattern: '*.css',
-          limit: '1KB',
-          compression
+        app: {
+          javascript: {
+            pattern: '*.js',
+            limit: '6KB',
+            compression
+          },
+          css: {
+            pattern: '*.css',
+            limit: '1KB',
+            compression
+          }
         }
       };
 
@@ -74,23 +77,25 @@ describe('bundlesize:test', function() {
       return task.run()
         .then(() => {
           let outLines = ui.output.split('\n');
-          assertOutput(outLines[0], true, config, 'javascript');
-          assertOutput(outLines[1], true, config, 'css');
+          assertOutput(outLines[0], true, config, 'app', 'javascript');
+          assertOutput(outLines[1], true, config, 'app', 'css');
           expect(outLines[2]).to.equal(chalk.green('Bundlesize check was successful. Good job!'));
         });
     });
 
     it(`it fails bundlesize test (${compression})`, function() {
       let config = {
-        javascript: {
-          pattern: '*.js',
-          limit: '1KB',
-          compression
-        },
-        css: {
-          pattern: '*.css',
-          limit: '1KB',
-          compression
+        app: {
+          javascript: {
+            pattern: '*.js',
+            limit: '1KB',
+            compression
+          },
+          css: {
+            pattern: '*.css',
+            limit: '1KB',
+            compression
+          }
         }
       };
 
@@ -100,8 +105,8 @@ describe('bundlesize:test', function() {
         .then(() => expect(false, 'Failing check must not resolve.').to.be.true)
         .catch((err) => {
           let outLines = ui.output.split('\n');
-          assertOutput(outLines[0], false, config, 'javascript');
-          assertOutput(outLines[1], true, config, 'css');
+          assertOutput(outLines[0], false, config, 'app', 'javascript');
+          assertOutput(outLines[1], true, config, 'app', 'css');
 
           expect(err.message).to.equal('Bundlesize check failed with 1 error!');
         });
