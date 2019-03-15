@@ -23,15 +23,16 @@ function assertOutput(line, pass, config, app, key) {
 
   expect(line).to.match(pattern);
   let matches = pattern.exec(line);
-  expect(matches[1]).to.equal(app);
-  expect(matches[2]).to.equal(key);
+  const [actualAppName, actualPatternName, actualFileSize, actualSizeLimit, actualCompression] = matches.slice(1);
+  expect(actualAppName).to.equal(app);
+  expect(actualPatternName).to.equal(key);
   if (pass) {
-    expect(bytes.parse(matches[3])).to.be.below(bytes.parse(limit));
+    expect(bytes.parse(actualFileSize)).to.be.below(bytes.parse(limit));
   } else {
-    expect(bytes.parse(matches[3])).to.be.above(bytes.parse(limit));
+    expect(bytes.parse(actualFileSize)).to.be.above(bytes.parse(limit));
   }
-  expect(matches[4]).to.equal(limit);
-  expect(matches[5]).to.equal(compression === 'none' ? 'uncompressed' : compression);
+  expect(actualSizeLimit).to.equal(limit);
+  expect(actualCompression).to.equal(compression === 'none' ? 'uncompressed' : compression);
 }
 
 describe('bundlesize:test', function() {
@@ -49,6 +50,86 @@ describe('bundlesize:test', function() {
       buildApp: false,
       configPath: 'config/bundlesize.js'
     });
+  });
+
+  it('it handles multiple apps', function () {
+    let config = {
+      app1: {
+        javascript1: {
+          pattern: '*.js',
+          limit: '6KB',
+          compresssion: 'gzip',
+        },
+        css2: {
+          pattern: '*.css',
+          limit: '1KB',
+          compression: 'gzip'
+        }
+      },
+      app2: {
+        javascript3: {
+          pattern: '*.js',
+          limit: '6KB',
+          compression: 'brotli'
+        },
+        css4: {
+          pattern: '*.css',
+          limit: '1KB',
+          compression: 'brotli'
+        }
+      }
+    }
+
+    createConfig(rootDir, config);
+    task.run()
+      .then(() => {
+        const outLines = ui.output.split('\n').slice(0, 4);
+        expect(outLines[0]).to.equal('ok 1 - app2:javascript3: 1.42KB <= 6KB (brotli)')
+        expect(outLines[1]).to.equal('ok 2 - app2:css4: 445B <= 1KB (brotli)')
+        expect(outLines[2]).to.equal('ok 3 - app1:javascript1: 5.88KB <= 6KB (uncompressed)')
+        expect(outLines[3]).to.equal('ok 4 - app1:css2: 605B <= 1KB (gzip)')
+      });
+  });
+
+  it('it handles oversized apps correctly', function () {
+    let config = {
+      app1: {
+        javascript1: {
+          pattern: '*.js',
+          limit: '2KB',
+          compresssion: 'gzip',
+        },
+        css2: {
+          pattern: '*.css',
+          limit: '1KB',
+          compression: 'gzip'
+        }
+      },
+      app2: {
+        javascript3: {
+          pattern: '*.js',
+          limit: '6KB',
+          compression: 'brotli'
+        },
+        css4: {
+          pattern: '*.css',
+          limit: '1KB',
+          compression: 'brotli'
+        }
+      }
+    }
+
+    createConfig(rootDir, config);
+    task.run()
+      .then(() => expect(false, 'Failing check must not resolve.').to.be.true)
+      .catch(err => {
+        const outLines = ui.output.split('\n').slice(0, 4);
+        expect(outLines[0]).to.equal('ok 1 - app2:javascript3: 1.42KB <= 6KB (brotli)')
+        expect(outLines[1]).to.equal('ok 2 - app2:css4: 445B <= 1KB (brotli)')
+        expect(outLines[2]).to.equal('not ok 3 - app1:javascript1: 5.88KB > 2KB (uncompressed)');
+        expect(outLines[3]).to.equal('ok 4 - app1:css2: 605B <= 1KB (gzip)')
+        expect(err.message).to.equal('Bundlesize check failed with 1 error!');
+      })
   });
 
   [
