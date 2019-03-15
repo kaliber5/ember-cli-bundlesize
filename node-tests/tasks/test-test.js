@@ -97,7 +97,7 @@ describe('bundlesize:test', function() {
       app1: {
         javascript1: {
           pattern: '*.js',
-          limit: '2KB',
+          limit: '1KB',
           compresssion: 'gzip',
         },
         css2: {
@@ -127,7 +127,7 @@ describe('bundlesize:test', function() {
         const outLines = ui.output.split('\n').slice(0, 4);
         expect(outLines[0]).to.equal('ok 1 - app2:javascript3: 1.42KB <= 6KB (brotli)')
         expect(outLines[1]).to.equal('ok 2 - app2:css4: 445B <= 1KB (brotli)')
-        expect(outLines[2]).to.equal('not ok 3 - app1:javascript1: 5.88KB > 2KB (uncompressed)');
+        expect(outLines[2]).to.equal('not ok 3 - app1:javascript1: 5.88KB > 1KB (uncompressed)');
         expect(outLines[3]).to.equal('ok 4 - app1:css2: 605B <= 1KB (gzip)')
         expect(err.message).to.equal('Bundlesize check failed with 1 error!');
       })
