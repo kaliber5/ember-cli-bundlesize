@@ -24,6 +24,7 @@ function assertOutput(line, pass, config, app, key) {
   expect(line).to.match(pattern);
   let matches = pattern.exec(line);
   const [actualAppName, actualPatternName, actualFileSize, actualSizeLimit, actualCompression] = matches.slice(1);
+
   expect(actualAppName).to.equal(app);
   expect(actualPatternName).to.equal(key);
   if (pass) {
