@@ -59,7 +59,7 @@ describe('bundlesize:test', function() {
         javascript1: {
           pattern: '*.js',
           limit: '6KB',
-          compresssion: 'gzip',
+          compression: 'gzip',
         },
         css2: {
           pattern: '*.css',
@@ -85,10 +85,10 @@ describe('bundlesize:test', function() {
     task.run()
       .then(() => {
         const outLines = ui.output.split('\n').slice(0, 4);
-        expect(outLines[0]).to.equal('ok 1 - app2:javascript3: 1.42KB <= 6KB (brotli)')
-        expect(outLines[1]).to.equal('ok 2 - app2:css4: 445B <= 1KB (brotli)')
-        expect(outLines[2]).to.equal('ok 3 - app1:javascript1: 5.88KB <= 6KB (uncompressed)')
-        expect(outLines[3]).to.equal('ok 4 - app1:css2: 605B <= 1KB (gzip)')
+        assertOutput(outLines[0], true, config, 'app2', 'javascript3');
+        assertOutput(outLines[1], true, config, 'app2', 'css4');
+        assertOutput(outLines[2], true, config, 'app1', 'javascript1');
+        assertOutput(outLines[3], true, config, 'app1', 'css2');
       });
   });
 
@@ -98,7 +98,7 @@ describe('bundlesize:test', function() {
         javascript1: {
           pattern: '*.js',
           limit: '1KB',
-          compresssion: 'gzip',
+          compression: 'gzip',
         },
         css2: {
           pattern: '*.css',
@@ -125,10 +125,10 @@ describe('bundlesize:test', function() {
       .then(() => expect(false, 'Failing check must not resolve.').to.be.true)
       .catch(err => {
         const outLines = ui.output.split('\n').slice(0, 4);
-        expect(outLines[0]).to.equal('ok 1 - app2:javascript3: 1.42KB <= 6KB (brotli)')
-        expect(outLines[1]).to.equal('ok 2 - app2:css4: 445B <= 1KB (brotli)')
-        expect(outLines[2]).to.equal('not ok 3 - app1:javascript1: 5.88KB > 1KB (uncompressed)');
-        expect(outLines[3]).to.equal('ok 4 - app1:css2: 605B <= 1KB (gzip)')
+        assertOutput(outLines[0], true, config, 'app2', 'javascript3');
+        assertOutput(outLines[1], true, config, 'app2', 'css4');
+        assertOutput(outLines[2], false, config, 'app1', 'javascript1');
+        assertOutput(outLines[3], true, config,'app1', 'css2');
         expect(err.message).to.equal('Bundlesize check failed with 1 error!');
       })
   });
