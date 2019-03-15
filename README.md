@@ -57,7 +57,7 @@ module.exports = {
 };
 ```
 
-In this example, top level is defined by `app`, followed by two buckets, `javascript` and `css`. You can include as many `app` and `bucket` as you wish. Each `app` supports multiple buckets and each bucket supports the following configuration properties:
+In this example, top level is defined by `app`, followed by two buckets, `javascript` and `css`. You can include as many apps and buckets as you wish. Each app supports multiple buckets and each bucket supports the following configuration properties:
 
 * `pattern`: a `glob` pattern (or array thereof) defining the files belonging to this bucket
 * `limit`: the maximum size all files defined by `pattern` may consume. you can use common size units like `B`, `KB`, `MB`
