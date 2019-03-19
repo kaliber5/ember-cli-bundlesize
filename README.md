@@ -29,7 +29,7 @@ Run this command to build and assert that your app does not exceed the defined l
 ```
 ember bundlesize:test
 ```
-This will create a production build of your app (so that may take a bit), and assert that all the files defined for 
+This will create a production build of your app (so that may take a bit), and assert that all the files defined for
 each bucket don't exceed its limits, after compression. In case of a failure the command will exit with a non-zero exit
 code. So you can integrate this command into your CI workflow, and make your builds fail when the bundle size test
 does not pass.
@@ -42,21 +42,22 @@ After installing the addon, a `config/bundlesize.js` file with a default configu
 
 ```js
 module.exports = {
-  javascript: {
-    pattern: 'assets/*.js',
-    limit: '500KB',
-    compression: 'gzip'
-  },
-  css: {
-    pattern: 'assets/*.css',
-    limit: '50KB',
-    compression: 'gzip'
+  app: {
+    javascript: {
+      pattern: 'assets/*.js',
+      limit: '500KB',
+      compression: 'gzip'
+    },
+    css: {
+      pattern: 'assets/*.css',
+      limit: '50KB',
+      compression: 'gzip'
+    }
   }
 };
 ```
 
-In this example two buckets, `javascript` and `css` are defined, but you can use as many as you wish. Each bucket supports
-the following configuration properties:
+In this example, top level is defined by `app`, followed by two buckets, `javascript` and `css`. You can include as many apps and buckets as you wish. Each app supports multiple buckets and each bucket supports the following configuration properties:
 
 * `pattern`: a `glob` pattern (or array thereof) defining the files belonging to this bucket
 * `limit`: the maximum size all files defined by `pattern` may consume. you can use common size units like `B`, `KB`, `MB`

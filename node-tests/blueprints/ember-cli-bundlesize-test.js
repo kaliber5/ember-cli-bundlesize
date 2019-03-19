@@ -1,9 +1,10 @@
 'use strict';
 
 const blueprintHelpers = require('ember-cli-blueprint-test-helpers/helpers');
-const setupTestHooks = blueprintHelpers.setupTestHooks;
-const emberNew = blueprintHelpers.emberNew;
 const emberGenerate = blueprintHelpers.emberGenerate;
+const emberNew = blueprintHelpers.emberNew;
+const setupTestHooks = blueprintHelpers.setupTestHooks;
+const { file } = require('ember-cli-blueprint-test-helpers/chai');
 
 const expect = require('ember-cli-blueprint-test-helpers/chai').expect;
 
@@ -15,8 +16,11 @@ describe('Acceptance: ember generate and destroy ember-cli-bundlesize', function
 
     // pass any additional command line options in the arguments array
     return emberNew()
-      .then(() => emberGenerate(args, (file) => {
-        expect(file('config/bundlesize.js')).to.equal(file(`${__dirname}/../fixtures/config/bundlesize.js`));
-    }));
+      .then(() => emberGenerate(args))
+      .then(() => {
+        expect(file('config/bundlesize.js')).to.equal(
+          file(`${__dirname}/../fixtures/config/bundlesize.js`)
+        );
+      });
   });
 });
