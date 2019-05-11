@@ -15,6 +15,13 @@ ember install ember-cli-bundlesize
 
 Make sure to `git add` the added `config/bundlesize.js` file!
 
+#### Optional dependency
+
+If your app uses Brotli compression and the `brotli` option is set in your configuration (i.e `compression: 'brotli'`), you must install the optional dependency: `brotli-size`.
+
+```
+npm install --save-dev brotli-size
+```
 
 Usage
 ------------------------------------------------------------------------------
