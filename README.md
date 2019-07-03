@@ -41,7 +41,9 @@ each bucket don't exceed its limits, after compression. In case of a failure the
 code. So you can integrate this command into your CI workflow, and make your builds fail when the bundle size test
 does not pass.
 
-If you do not want to build the app before running the tests you can disable the build by passing `--build-app=false`
+If you do not want to build the app before running the tests you can disable the build by passing `--build-app=false`.
+
+If you want to use a different build directory from the default one (`dist`), use `--build-dir=other-dist-directory`.
 
 ### Configuration
 
