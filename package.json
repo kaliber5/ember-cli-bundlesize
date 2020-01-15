@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-bundlesize",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Make sure your Ember app stays small by testing its bundle size against a given size budget.",
   "keywords": [
     "ember-addon"
