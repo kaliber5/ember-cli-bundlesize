@@ -38,7 +38,7 @@
     "ember-cli-blueprint-test-helpers": "^0.18.3",
     "ember-cli-dependency-checker": "^3.0.0",
     "ember-cli-htmlbars": "^3.0.0",
-    "ember-cli-htmlbars-inline-precompile": "^1.0.3",
+    "ember-cli-htmlbars-inline-precompile": "^2.1.0",
     "ember-cli-inject-live-reload": "^1.8.2",
     "ember-cli-sri": "^2.1.1",
     "ember-export-application-global": "^2.0.0",
@@ -48,13 +48,13 @@
     "ember-source": "~3.5.1",
     "ember-source-channel-url": "^1.1.0",
     "eslint": "^5.6.0",
-    "eslint-plugin-chai-expect": "^1.1.1",
+    "eslint-plugin-chai-expect": "^2.1.0",
     "eslint-plugin-mocha": "^5.2.0",
     "eslint-plugin-node": "^7.0.1",
     "fs-extra": "^7.0.0",
     "loader.js": "^4.7.0",
     "mocha": "^4.0.1",
-    "tmp": "^0.0.33"
+    "tmp": "^0.1.0"
   },
   "engines": {
     "node": "6.* || 8.* || >= 10.*"
