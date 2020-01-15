@@ -15,7 +15,6 @@ module.exports = {
     node: true
   },
   rules: {
-    'ember/no-jquery': 'error'
   },
   overrides: [
     // mocha tests
