@@ -1,7 +1,8 @@
 module.exports = {
   root: true,
+  parser: 'babel-eslint',
   parserOptions: {
-    ecmaVersion: 2015,
+    ecmaVersion: 2017
   },
   plugins: [
     'node'
@@ -14,6 +15,7 @@ module.exports = {
     node: true
   },
   rules: {
+    'ember/no-jquery': 'error'
   },
   overrides: [
     // mocha tests
