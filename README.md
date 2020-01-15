@@ -6,6 +6,15 @@ ember-cli-bundlesize
 
 Make sure your Ember app stays small by testing its bundle size against a given size budget.
 
+
+Compatibility
+------------------------------------------------------------------------------
+
+* Ember.js v3.8 or above
+* Ember CLI v2.13 or above
+* Node.js v8 or above
+
+
 Installation
 ------------------------------------------------------------------------------
 
@@ -76,3 +85,10 @@ In this example, top level is defined by `app`, followed by two buckets, `javasc
   * `none`: do not compress files at all
 
 To override the location of the config path you can pass: `config-path="<PATH TO CONFIG>"`
+
+
+Contributing
+------------------------------------------------------------------------------
+
+See the [Contributing](CONTRIBUTING.md) guide for details.
+
