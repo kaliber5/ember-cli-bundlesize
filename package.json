@@ -36,7 +36,7 @@
     "babel-eslint": "^10.0.3",
     "brotli-size": "^0.1.0",
     "chai": "^4.2.0",
-    "console-ui": "^2.2.2",
+    "console-ui": "^3.1.1",
     "ember-auto-import": "^1.5.3",
     "ember-cli": "~3.15.2",
     "ember-cli-blueprint-test-helpers": "^0.18.3",
