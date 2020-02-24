@@ -23,7 +23,7 @@
     "bytes": "^3.1.0",
     "chalk": "^3.0.0",
     "ember-cli-babel": "^7.18.0",
-    "ember-cli-htmlbars": "^4.2.2",
+    "ember-cli-htmlbars": "^4.2.3",
     "execa": "^4.0.0",
     "fast-glob": "^3.2.0",
     "gzip-size": "^5.1.1",
