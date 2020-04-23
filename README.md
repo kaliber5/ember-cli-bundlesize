@@ -1,6 +1,7 @@
 ember-cli-bundlesize
 ==============================================================================
-[![Build Status](https://travis-ci.com/kaliber5/ember-cli-bundlesize.svg?branch=master)](https://travis-ci.com/kaliber5/ember-cli-bundlesize)
+
+![CI](https://github.com/kaliber5/ember-cli-bundlesize/workflows/CI/badge.svg)
 [![Ember Observer Score](https://emberobserver.com/badges/ember-cli-bundlesize.svg)](https://emberobserver.com/addons/ember-cli-bundlesize)
 [![npm version](https://badge.fury.io/js/ember-cli-bundlesize.svg)](https://badge.fury.io/js/ember-cli-bundlesize)
 
