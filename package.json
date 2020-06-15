@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "bytes": "^3.1.0",
-    "chalk": "^4.0.0",
+    "chalk": "^4.1.0",
     "ember-cli-babel": "^7.20.5",
     "ember-cli-htmlbars": "^5.1.2",
     "execa": "^4.0.2",
