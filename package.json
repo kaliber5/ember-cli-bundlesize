@@ -24,7 +24,7 @@
     "chalk": "^4.1.0",
     "ember-cli-babel": "^7.21.0",
     "ember-cli-htmlbars": "^5.2.0",
-    "execa": "^4.0.2",
+    "execa": "^4.0.3",
     "fast-glob": "^3.2.4",
     "gzip-size": "^5.1.1",
     "rsvp": "^4.8.3",
