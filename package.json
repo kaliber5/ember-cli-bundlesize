@@ -32,7 +32,7 @@
     "zlib": "^1.0.5"
   },
   "devDependencies": {
-    "@glimmer/component": "^1.0.3",
+    "@glimmer/component": "^1.0.4",
     "babel-eslint": "^10.1.0",
     "brotli-size": "^4.0.0",
     "chai": "^4.3.0",
