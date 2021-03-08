@@ -35,7 +35,7 @@
     "@glimmer/component": "^1.0.4",
     "babel-eslint": "^10.1.0",
     "brotli-size": "^4.0.0",
-    "chai": "^4.3.0",
+    "chai": "^4.3.3",
     "console-ui": "^3.1.2",
     "ember-auto-import": "^1.10.1",
     "ember-cli": "~3.15.2",
