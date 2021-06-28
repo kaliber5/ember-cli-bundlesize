@@ -25,7 +25,7 @@
     "ember-cli-babel": "^7.26.6",
     "ember-cli-htmlbars": "^5.7.1",
     "execa": "^5.1.1",
-    "fast-glob": "^3.2.5",
+    "fast-glob": "^3.2.6",
     "gzip-size": "^6.0.0",
     "rsvp": "^4.8.3",
     "silent-error": "^1.1.1",
